@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Polizas Caintra</title>
+  <meta name="description" content="">
+  <link rel="icon"
+              type="image/x-icon"
+              href="images/caintra_rgb.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
+  <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
+  <link rel="stylesheet" href="app.css">
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body>
+<header id="main-header">
+  <div>
+          <div class="main-subheader2">
+            <h5>      Cámara de la Industria de
+              <br> Transformación de Nuevo León</h5>
+          </div>
+          <div class="main-subheader">
+            
+          </div>
+      
+</header>
+<section >
+<div ng-view></div>
+</section>
+    <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+    <script src="app.js"></script>
+    <script src="Services/authentication.service.js"></script>
+
+    <script src="Acceso/AccesoController.js"></script>
+    <script src="Generacion/GeneracionController.js"></script>
+     <script src="Termino/FinalController.js"></script>
+    <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>

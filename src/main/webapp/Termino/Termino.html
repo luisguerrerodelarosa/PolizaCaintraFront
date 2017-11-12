@@ -1,0 +1,18 @@
+<div id="main-content" class="menu">
+  <h2 align="center">Generacion de Polizas</h2>
+<div ng-if="error == 1">
+  <center>
+  <h3 align="center">{{mensajePrincipal}}</h3>
+  <button align="center" ng-click="regresar()";  class="btn btn-primary">Regresar a Menu</button>
+</center>
+</div>
+
+<div ng-if="error == 0">
+  <center>
+  <h3 align="center">Se genero Correctamente la Poliza {{poliza.numeroPoliza}}</h3>
+  <h3 align="center">La puedes consultar en la siguiente en la Siguiente Opcion</h3>
+  <button align="center" ng-click="redirectPoliza()";  class="boton">Consulta de Poliza</button>
+  <button align="center" ng-click="regresar()";  class="boton">Regresar a Menu</button>
+</center>
+</div>
+</div>

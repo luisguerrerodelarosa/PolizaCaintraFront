@@ -1,0 +1,143 @@
+﻿<div id="main-content" class="menu">
+    <h2 align="center">Generacion de Polizas</h2>
+   	<div>
+      <form ng-submit="getConvenio()" >
+		  	<table align="center" >
+		  		<tr>
+		  			<td >Convenio Practicante :</td>
+		  			<td >
+		  				<input type="text" name="username" id="username"  ng-model="convenio"
+		  				maxlength="8" minlength="5" 
+		  				/>
+		  			</td>
+		  		</tr>
+		  		<tr >
+		  			<td align="right">Opcion de Seguro :</td>
+		  			<td>
+		  				<select  ng-model="opcionSeguro" required>
+					         <option ng-repeat="item in units" ng-value="item.id">{{item.label}}</option>
+					    </select>
+		  			</td>
+		  		</tr>
+		  		<tr >
+		  			<td align="right">Fecha de Inicio :</td>
+		  			<td>
+		  				 <input type="date" id="fechaInicio" name="fechaInicio" ng-model="fechaInicio"
+       							placeholder="yyyy-MM-dd" min="2017-09-01" max="2020-12-31" required />
+		  			</td>
+		  		</tr>
+		  		<tr>
+		  			<td colspan="2" align="center">
+		  			 <button type="submit"  class="boton">Consulta Practicante</button>
+		  			 </td>
+		  		</tr>
+		  	</table>
+	  	</form>
+   </div>
+   <div ng-if="estatusProceso == 2">
+    <form ng-submit="generaPoliza()" >
+   			<table  align="center">
+          <tr>
+            <td colspan="6" align="left">
+              <div class="headerText">
+              Informacion de Practicante
+            </div>
+            </td>
+          </tr>
+   				<tr>
+   					<td align="left">Nombre:</td><td align="left">{{practicante.nombrePracticante}}</td>
+   					<td>RFC:</td><td>{{practicante.rfcPracticante}}</td>
+   				</tr>
+   				<tr>
+   					<td align="left">Calle:</td><td align="left">{{practicante.dirColoniaPracticante}}</td>
+   					<td>Colonia:</td><td>{{practicante.dirCallePracticante}}</td>
+   				</tr>
+          <tr>
+            <td colspan="6" align="left">
+              <div class="headerText">
+   			      Informacion de Empresa
+              </div>
+            </td>
+          </tr>
+   				<tr>
+   					<td align="left">Empresa:</td><td align="left">{{practicante.empresaPracticante.nombreEmpresa}}</td>
+   					<td>RFC:</td><td>{{practicante.empresaPracticante.rfcEmpresa}}</td>
+   				</tr>
+   				<tr>
+   					<td align="left">Calle:</td><td align="left">{{practicante.empresaPracticante.dirColoniaEmpresa}}</td>
+   					<td>Colonia:</td><td>{{practicante.empresaPracticante.dirCalleEmpresa}}</td>
+   				</tr>
+          <tr>
+            <td colspan="6" align="left">
+              <div class="headerText" >
+                Beneficiarios
+                  </div>
+              </td>
+          </tr>
+   			      
+
+   				<tr ng-if="practicante.beneficiarioPracticante.porcentajeBeneficiario1 >0
+   					&& practicante.beneficiarioPracticante.porcentajeBeneficiario1 <=100
+   					">
+   					<td align="left">Beneficiario:</td><td align="left">{{practicante.beneficiarioPracticante.nombreBeneficiario1}}</td>
+   					<td align="left">Parentesco:</td><td align="left">{{practicante.beneficiarioPracticante.parentescoBeneficiario1}}</td>
+   					<td align="left">Porcentaje:</td><td align="left">{{practicante.beneficiarioPracticante.porcentajeBeneficiario1}}</td>
+   				</tr>
+   				<tr ng-if="practicante.beneficiarioPracticante.porcentajeBeneficiario2 >0
+   					&& practicante.beneficiarioPracticante.porcentajeBeneficiario2 <=100
+   					">
+   					<td align="left">Beneficiario:</td><td align="left">{{practicante.beneficiarioPracticante.nombreBeneficiario2}}</td>
+   					<td align="left">Parentesco:</td><td align="left">{{practicante.beneficiarioPracticante.parentescoBeneficiario2}}</td>
+   					<td align="left">Porcentaje:</td><td align="left">{{practicante.beneficiarioPracticante.porcentajeBeneficiario2}}</td>
+   				</tr>
+          <tr>
+            <td colspan="6" align="center">
+                <button align="center" type="submit"  class="boton">Generar Poliza</button>
+              </td>
+          </tr>
+   			</table>
+         
+      </form>
+   </div>
+    
+  <!--   <form name="form" ng-submit="vm.register()"  role="form">
+        <div class="form-group" ng-class="{ 'has-error': form.firstName.$dirty && form.firstName.$error.required }">
+            <label for="convenio">Convenio Practicante</label>
+            <input type="text" name="convenio" id="convenio" class="form-control" ng-model="vm.user.convenio" required />
+            <span ng-show="form.convenio.$dirty && form.convenio.$error.required" class="help-block">Capture el Convenio del Practicante</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.lastName.$dirty && form.lastName.$error.required }">
+            <label for="opcionSeguro">Opcion de Seguro</label>
+            <select class="form-control"  ng-model="vm.user.opcionSeguro" required>
+		         <option ng-repeat="item in units" ng-value="item.id">{{item.label}}</option>
+		    </select>
+		     <span ng-show="form.opcionSeguro.$dirty && form.opcionSeguro.$error.required" class="help-block">Seleccione la opcion del Seguro</span>
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': form.username.$dirty && form.username.$error.required }">
+            <label for="fechaInicio">Fecha Inicio de Seguro</label>
+            <input type="date" id="c" name="fechaInicio" ng-model="vm.user.fechaInicio"
+       			placeholder="yyyy-MM-dd" min="2017-09-01" max="2020-12-31" required />
+            <span ng-show="form.fechaInicio.$dirty && form.fechaInicio.$error.required && form.fechaInicio.$error.date" class="help-block">Seleccione la fecha de Inicio del Convenio</span>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit" ng-disabled="form.$invalid || vm.dataLoading" class="btn btn-primary">Generar Poliza</button>
+            <img ng-if="vm.dataLoading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+            
+        </div>
+        
+    </form>-->
+   <!--  <div  ng-if="estatusProceso == 2">
+    <div >Transacci&oacuten2:</div>
+    	<label for="fechaInicio">Test</label>
+			<div>
+				<div >
+				<span class="largefont">asndlasnd&oacuten:
+				</span>
+				</div>
+	            <div class="data col-45">13221</div>
+			</div>
+	            
+    
+    </div>-->
+</div>
